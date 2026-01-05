@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NOSCE | Know Thyself</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <style>
+        :root { --neon-blue: #00F2FF; --bg-dark: #010205; }
+        
+        html, body { 
+            background-color: var(--bg-dark); 
+            color: white; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden; 
+            width: 100%;
+            position: relative;
+            touch-action: pan-y;
+        }
+
+        .cinzel { font-family: 'Cinzel', serif; }
+
+        .bg-watermark {
+            position: absolute;
+            font-size: 20vw;
+            color: rgba(255, 255, 255, 0.02);
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .owl-glow {
+            image-rendering: high-quality;
+            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.2));
+            will-change: transform, filter;
+        }
+
+        #cursor-glow {
+            position: fixed; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 2; transform: translate(-50%, -50%);
+            display: none;
+        }
+        @media (min-width: 768px) { #cursor-glow { display: block; width: 600px; height: 600px; } }
+
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .content-layer { position: relative; z-index: 10; width: 100%; }
+        
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .glass-card:hover { 
+            border-color: rgba(0, 242, 255, 0.4); 
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .cta-btn { 
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+        }
+        .cta-btn:hover { background: white; color: black; box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+
+        ::-webkit-scrollbar { width: 0px; }
+    </style>
+</head>
+<body>
+
+    <div id="cursor-glow"></div>
+    <div id="particles-js"></div>
+
+    <div class="bg-watermark cinzel" style="top: 5%; left: -10%;" id="bg-text-1">NOSCE</div>
+    <div class="bg-watermark cinzel" style="top: 45%; right: -10%;" id="bg-text-2">KNOW</div>
+
+    <main class="content-layer">
+        <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 pb-12 relative">
+            <div id="owl-container" class="mb-6 md:mb-12">
+                <img src="https://i.ibb.co/RnmSd80/main.png" alt="NOSCE Owl" 
+                     class="owl-glow w-48 md:w-80 opacity-0" id="hero-owl">
+            </div>
+            <div class="space-y-4">
+                <h1 class="cinzel text-5xl md:text-[8rem] tracking-[1rem] md:tracking-[2rem] opacity-0 translate-y-8" id="hero-title">NOSCE</h1>
+                <p class="text-xs md:text-lg text-white/60 tracking-[0.4em] font-light mb-8 opacity-0" id="hero-subtitle">KNOW THYSELF. TRADE BETTER.</p>
+                <div class="opacity-0 pt-4" id="hero-cta">
+                    <a href="https://x.com/Yep_Cooper/" target="_blank" 
+                       class="cta-btn border border-white/30 px-12 py-4 tracking-[0.3em] text-[10px] md:text-[12px] inline-block">
+                        JOIN THE WAITLIST
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-20 px-6">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+                <div class="space-y-6">
+                    <h2 class="cinzel text-2xl md:text-4xl tracking-[0.3em] text-white opacity-0 reveal">NOSCE TE IPSUM</h2>
+                    <div class="text-base md:text-xl leading-relaxed text-white/70 font-light opacity-0 reveal space-y-6">
+                        <p class="italic text-white/40 border-l-2 border-white/20 pl-4">“Most traders don’t lose to the market. They lose to themselves.”</p>
+                        <p>NOSCE is the quiet guardian that helps you see clearly in your most irrational moments.</p>
+                    </div>
+                </div>
+                <div class="opacity-0 reveal flex justify-center">
+                    <img src="https://i.ibb.co/CKY34qNd/IMG-2106.png" alt="Zen" 
+                         class="w-56 md:w-72 filter brightness-100 owl-glow">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-20 px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto w-full">
+                <div class="glass-card p-10 space-y-6 opacity-0 reveal-card group cursor-pointer">
+                    <div class="w-10 h-[1px] bg-white/40 group-hover:w-full group-hover:bg-cyan-400 transition-all duration-500"></div>
+                    <h3 class="cinzel text-white tracking-widest text-lg">Records</h3>
+                    <p class="text-white/50 text-sm leading-loose group-hover:text-white/90 transition-colors">On-chain behavioral tracking. Every leverage, every tilt. Recorded in silence.</p>
+                </div>
+                <div class="glass-card p-10 space-y-6 opacity-0 reveal-card group cursor-pointer">
+                    <div class="w-10 h-[1px] bg-white/40 group-hover:w-full group-hover:bg-cyan-400 transition-all duration-500"></div>
+                    <h3 class="cinzel text-white tracking-widest text-lg">Understands</h3>
+                    <p class="text-white/50 text-sm leading-loose group-hover:text-white/90 transition-colors">Pattern recognition without the noise. It knows your bias before you do.</p>
+                </div>
+                <div class="glass-card p-10 space-y-6 opacity-0 reveal-card group cursor-pointer">
+                    <div class="w-10 h-[1px] bg-white/40 group-hover:w-full group-hover:bg-cyan-400 transition-all duration-500"></div>
+                    <h3 class="cinzel text-white tracking-widest text-lg">Intervenes</h3>
+                    <p class="text-white/50 text-sm leading-loose group-hover:text-white/90 transition-colors">The subtle nudge when the edge vanishes. Speaks only when necessary.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="pt-16 pb-20 text-center border-t border-white/5 bg-black/20">
+            <div class="flex justify-center gap-12 mb-8">
+                <a href="https://x.com/Yep_Cooper/" target="_blank" class="text-white/40 hover:text-white transition-all duration-300">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.494h2.039L6.486 3.24H4.298L17.609 20.647z"/></svg>
+                </a>
+                <a href="https://web.telegram.org/k/#@feilvbin7107" target="_blank" class="text-white/40 hover:text-white transition-all duration-300">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </a>
+            </div>
+            <p class="text-[9px] text-white/20 tracking-[0.4em] uppercase">© 2026 NOSCE. PRE-ALPHA ACCESS.</p>
+        </footer>
+    </main>
+
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 40 },
+                "color": { "value": "#00F2FF" },
+                "opacity": { "value": 0.15 },
+                "size": { "value": 1.2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00F2FF", "opacity": 0.05 },
+                "move": { "enable": true, "speed": 0.6 }
+            }
+        });
+
+        window.addEventListener('load', () => {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            const glow = document.getElementById('cursor-glow');
+            if (window.innerWidth > 768) {
+                document.addEventListener('mousemove', (e) => {
+                    gsap.to(glow, { x: e.clientX, y: e.clientY, duration: 0.8 });
+                });
+            }
+
+            gsap.to("#bg-text-1", { x: 50, scrollTrigger: { scrub: 1 } });
+            gsap.to("#bg-text-2", { x: -50, scrollTrigger: { scrub: 1 } });
+
+            const tl = gsap.timeline();
+            tl.to("#hero-owl", { opacity: 1, duration: 2, ease: "power2.out" })
+              .to("#hero-title", { opacity: 1, y: 0, duration: 1.2 }, "-=1.5")
+              .to(["#hero-subtitle", "#hero-cta"], { opacity: 1, y: 0, stagger: 0.2 }, "-=1");
+
+            gsap.utils.toArray(".reveal").forEach(el => {
+                gsap.fromTo(el, { opacity: 0, y: 30 }, {
+                    scrollTrigger: { trigger: el, start: "top 90%" },
+                    opacity: 1, y: 0, duration: 1
+                });
+            });
+
+            gsap.fromTo(".reveal-card", { opacity: 0, y: 30 }, {
+                scrollTrigger: { trigger: ".reveal-card", start: "top 85%" },
+                opacity: 1, y: 0, stagger: 0.15, duration: 1
+            });
+        });
+    </script>
+</body>
+</html>
